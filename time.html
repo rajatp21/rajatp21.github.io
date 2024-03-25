@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Time Together Clock</title>
+<style>
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f9e5e8; /* Light pink background */
+    background-image: url('valentine_background.jpg'); /* Add your Valentine's Day background image */
+    background-size: cover;
+    background-position: center;
+  }
+  .clock {
+    font-size: 2rem;
+    background: rgba(255, 255, 255, 0.7);
+    color: #e74c3c; /* Red text color */
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+  .heart {
+    color: #e74c3c; /* Red heart color */
+    font-size: 1.5rem;
+    vertical-align: middle;
+    margin-right: 5px;
+  }
+</style>
+</head>
+<body>
+
+<div class="clock" id="timeTogether"></div>
+
+<script>
+// Set the start date of when your time together began
+const startDate = new Date('2023-02-26T23:00:00'); // Replace with your start date and time
+
+function updateTime() {
+  const now = new Date();
+  const elapsedTime = new Date(now - startDate);
+  
+  // Extract years, months, days, hours, minutes, and seconds
+  let years = elapsedTime.getUTCFullYear() - 1970;
+  let months = elapsedTime.getUTCMonth();
+  let days = elapsedTime.getUTCDate() - 1;
+  let hours = elapsedTime.getUTCHours();
+  let minutes = elapsedTime.getUTCMinutes();
+  let seconds = elapsedTime.getUTCSeconds();
+  
+  // Format the output
+  let timeString = '<i class="heart">&hearts;</i>';
+  if (years > 0) {
+    timeString += years + ' year(s), ';
+  }
+  if (months > 0) {
+    timeString += months + ' month(s), ';
+  }
+  if (days > 0) {
+    timeString += days + ' day(s), ';
+  }
+  timeString += hours + ' hour(s), ';
+  timeString += minutes + ' minute(s), ';
+  timeString += seconds + ' second(s)';
+  
+  // Update the clock element with the new time
+  document.getElementById('timeTogether').innerHTML = timeString;
+}
+
+// Update the time every second
+setInterval(updateTime, 1000);
+
+// Initialize the clock
+updateTime();
+
+</script>
+
+</body>
+</html>
